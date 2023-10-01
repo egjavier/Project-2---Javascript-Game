@@ -13,9 +13,7 @@ function play() {
   playBtn.addEventListener('click', () => {
 
     const game = document.querySelector('.game')
-
-    // remove ul
-    game.removeChild(game.firstElementChild)  
+    game.removeChild(game.firstElementChild)
 
     // change play button style
     setTimeout(() => {
@@ -73,7 +71,6 @@ function shuffleImg() {
 // append cards
 function addCards() {
   const images = shuffleImg()
-  const cards = document.querySelectorAll('.card')
 
   // add cards to the section
   images.forEach( e => {
@@ -203,3 +200,4 @@ function playAudio(audio) {
 }
 
 play()
+
