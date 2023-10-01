@@ -10,63 +10,39 @@
   <link rel="stylesheet" href="style.css">
 
 </head>
-<body class="conatiner">
+<body>
   <header class="container text-center pt-4 pb-4">
-    <h1 class="fs-1 fw-bold">
+    <h1 class="fs-1 fw-bold text-success">
       <img height="50" src="images/logo.svg" alt="brain icon">
       Memory Game
       <img height="50" src="images/logo.svg" alt="brain icon">
     </h1>
   </header>
 
-  <main class="pb-5">
-    <!-- levels -->
-    <section class="btn-group container d-flex" role="group" aria-label="Basic outlined example">
-      <button type="button" class="btn btn-outline-success border-2 bg-success text-light fw-bold">Level 1</button>
-      <button type="button" class="btn btn-outline-secondary border-2 fw-bold" disabled>Level 2</button>
-      <button type="button" class="btn btn-outline-secondary border-2 fw-bold" disabled>Level 3</button>
-      <button type="button" class="btn btn-outline-secondary border-2 fw-bold" disabled>Level 4</button>
-      <button type="button" class="btn btn-outline-secondary border-2 fw-bold" disabled>Level 5</button>
+  <main class="container pb-5">
+    <!-- play and reset buttons -->
+    <section class="container d-flex justify-content-center">
+      <a href="#gameContainer"><button id="playBtn" type="button" class="btn btn-outline-success me-3 fw-bold ps-5 pe-5">
+        Play
+      </button></a>
+      <button id="resetBtn" type="button" class="btn btn-success fw-bold ps-5 pe-5">Reset</button>
     </section>
 
-    <!-- actual game -->
-    <section class="container d-flex justify-content-center mt-3 pt-2 pb-4 shadow">
-      <!-- first row -->
-      <div id="gameContainer" class="container row d-flex justify-content-center p-0">
-        <div class="col-2 me-3 p-0 mt-3">
-          <img width="100%" src="images/playingCard.png" rel="palying card">
-        </div>
-        <div class="col-2 me-3 p-0 mt-3">
-          <img width="100%" src="images/playingCard.png" rel="palying card">
-        </div>
-        <div class="col-2 me-3 p-0 mt-3">
-          <img width="100%" src="images/playingCard.png" rel="palying card">
-        </div>
-        <div class="col-2 me-3 p-0 mt-3">
-          <img width="100%" src="images/playingCard.png" rel="palying card">
-        </div>
-        <div class="col-2 me-3 p-0 mt-3">
-          <img width="100%" src="images/playingCard.png" rel="palying card">
-        </div>
-        <div class="col-2 me-3 p-0 mt-3">
-          <img width="100%" src="images/playingCard.png" rel="palying card">
-        </div>
-        <div class="col-2 me-3 p-0 mt-3">
-          <img width="100%" src="images/playingCard.png" rel="palying card">
-        </div>
-        <div class="col-2 me-3 p-0 mt-3">
-          <img width="100%" src="images/playingCard.png" rel="palying card">
-        </div>
+    <!-- actual game-->
+    <section class="d-flex justify-content-center align-items-center mt-5">
+      <div id="gameContainer"></div>
+    </section>
+
+    <!-- score and timer -->
+    <section>
+      <div id="livesDiv" class="position-fixed bottom-0 end-0 me-3 mb-4 pt-2 pb-2 ps-4 pe-4 bg-success border rounded-pill text-light fw-bold fs-6">
+        Lives: <span id="lives"></span>
       </div>
     </section>
-
-    <!-- score -->
-    <section class="position-fixed bottom-0 end-0 me-3 mb-4 pt-2 pb-2 ps-4 pe-4 bg-success border rounded-pill text-light fw-bold">
-      SCORE: 0
-    </section>
+    
   </main>
 
-  <footer class="container-fluid p-0 m-0 bg-secondary text-center text-light f-6">
+  <footer class="container-fluid p-0 m-0 bg-success text-center text-light f-6">
     <i><b>Memory Game</b> by Eunice Javier</i>
   </footer>
   
@@ -74,3 +50,4 @@
   <script src="script.js"></script>
 </body>
 </html>
+
