@@ -5,6 +5,45 @@ let playerLives = 6
 // add lives count
 lives.textContent = playerLives
 
+// play button 
+function play() {
+  const playBtn = document.querySelector('#playBtn');
+
+  // add bg Music
+  playBtn.addEventListener('click', () => {
+
+    const game = document.querySelector('.game')
+
+    // remove ul
+    game.removeChild(game.firstElementChild)  
+
+    // change play button style
+    setTimeout(() => {
+      playBtn.disabled = true;
+      playBtn.style.opacity = .5;
+      playBtn.style.color = "white";
+      playBtn.style.backgroundColor = "rgb(25, 135, 84)"
+    }, 100);
+
+    // add Cards
+    addCards()
+
+    // show all cards for a seconds
+    const card = document.querySelectorAll('.card')
+    setTimeout(() => {
+      card.forEach( e => {
+        e.classList.toggle('toggle')
+      })
+      playAudio('audio/flipCard.wav')
+    }, 500);
+    setTimeout(() => {
+      card.forEach( e => {
+        e.classList.toggle('toggle')
+      })
+    }, 2000);
+  })
+}
+
 // array of images
 function imgArray() {
   const arr = [
@@ -76,15 +115,16 @@ function checkCards(e) {
     clickedCArd.classList.add('flipped')
 
   const flipped = document.querySelectorAll('.flipped')
+  const toggle = document.querySelectorAll('.toggle')
 
   if(flipped.length === 2) {
     if(flipped[0].getAttribute('alt') === flipped[1].getAttribute('alt')) {
       flipped.forEach( card => {
         card.classList.remove('flipped')
         card.style.pointerEvents = 'none'
+        playAudio('audio/match.wav');
       })
     } else {
-      console.log('not matched')
       flipped.forEach( card => {
         card.classList.remove('flipped')
         setTimeout( () => {card.classList.remove('toggle')}, 500)
@@ -93,31 +133,67 @@ function checkCards(e) {
       lives.textContent = playerLives
 
       if (playerLives === 0) {
-        end()
+        end('🙀 OH NO! Try Again.')
+        playAudio('audio/tryAgain.mp3')
       }
     }
+  }
+
+  if (toggle.length === 16){
+    end('👏 You Won!')
   }
 }
 
 // restart 
-function end() {
+function end(text) {
   let images = shuffleImg()
   let front = document.querySelectorAll('.front')
   let card = document.querySelectorAll('.card')
 
+  gameContainer.style.pointerEvents = 'none';
+
   // loop through the shuffled images
   images.forEach( (e, i) => {
     // flip all the cards back when out of lives
+    card[i].classList.remove('toggle')
+
+    // shuffle the images again
     setTimeout(() => {
-      card[i].classList.remove('toggle')
+      card[i].style.pointerEvents = 'all'
+      front[i].src = e.imgSrc
+      card[i].setAttribute('alt', e.name)
+      gameContainer.style.pointerEvents = 'all';
     }, 1000);
 
-
-  })
+    // change play button style
+    setTimeout(() => {
+      playBtn.disabled = false
+      playBtn.style.opacity = 1
+      playBtn.style.color = "rgb(25, 135, 84)"
+      playBtn.style.backgroundColor = "white"
+    }, 100);
+})
 
   // restart the lives
   playerLives = 6;
   lives.textContent = playerLives
+
+  // show all cards for a seconds
+  setTimeout(() => {
+    card.forEach( e => {
+      e.classList.toggle('toggle')
+    })
+    playAudio('audio/flipCard.wav')
+  }, 1500);
+  setTimeout(() => {
+    card.forEach( e => {
+      e.classList.toggle('toggle')
+    })
+  }, 2500);
+  
+
+  // 
+  setTimeout(() => {alert(text)}, 100);
 }
 
 // play audio
@@ -126,4 +202,4 @@ function playAudio(audio) {
   clickAudio.play();
 }
 
-console.log(addCards())
+play()

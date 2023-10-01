@@ -20,17 +20,40 @@
   </header>
 
   <main class="container pb-5">
+    <!-- bg music -->
+    <audio src="audio/bgMusic.mp3" autoplay></audio>
+
     <!-- play and reset buttons -->
     <section class="container d-flex justify-content-center">
       <a href="#gameContainer"><button id="playBtn" type="button" class="btn btn-outline-success me-3 fw-bold ps-5 pe-5">
         Play
       </button></a>
-      <button id="resetBtn" type="button" class="btn btn-success fw-bold ps-5 pe-5">Reset</button>
     </section>
 
     <!-- actual game-->
-    <section class="d-flex justify-content-center align-items-center mt-5">
-      <div id="gameContainer"></div>
+    <section class="game d-flex justify-content-center align-items-center mt-5 flex-column">
+      <ul id="instruction" class="d-flex justify-content-center align-items-center flex-column">
+        <b class="text-secondary fs-1">How the Game Work:</b><br><br>            
+            
+          <li>Match pairs of cards while preserving your 6 lives.</li>
+          <li>
+            The player begins with 6 lives. <br>
+            The game ends when you run out of lives or successfully match all the pairs.
+          </li>
+          
+          <li>The player flips over two cards, revealing their faces.</li><br>
+          
+          <b class="text-secondary fs-5">The game continues until one of the following conditions is met:</b><br>
+          <li>
+            The player successfully matches all the pairs, in which case they win the game.<br>
+            The player runs out of lives, resulting in a loss.<br>
+          </li><br><br>
+
+          <b class="text-secondary fs-1 text-center">Hit <span class="text-danger" >PLAY</span> to start!</b><br>
+      </ul>
+
+      <div id="gameContainer">
+      </div>
     </section>
 
     <!-- score and timer -->
@@ -39,7 +62,6 @@
         Lives: <span id="lives"></span>
       </div>
     </section>
-    
   </main>
 
   <footer class="container-fluid p-0 m-0 bg-success text-center text-light f-6">
