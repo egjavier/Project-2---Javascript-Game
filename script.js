@@ -138,6 +138,7 @@ function checkCards(e) {
 
   if (toggle.length === 16){
     end('👏 You Won!')
+    playAudio('audio/wow.mp3')
   }
 }
 
