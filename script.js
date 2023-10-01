@@ -137,20 +137,34 @@ function checkCards(e) {
       lives.textContent = playerLives
 
       if (playerLives === 0) {
-        end('🙀 OH NO! Try Again.')
+
+        // lost modal
+        const winnerModal = new bootstrap.Modal(document.getElementById('winnerModal'))
+
+        document.querySelector('#resultEmoji').innerHTML = "🙀"
+        document.querySelector('#resultMessage').innerHTML = "Oh no! You have lost!"
+        winnerModal.show();
+    
+        end()
         playAudio('audio/tryAgain.mp3')
       }
     }
   }
 
   if (toggle.length === 16){
-    end('👏 You Won!')
+    // win modal
+    const winnerModal = new bootstrap.Modal(document.getElementById('winnerModal'))
+    document.querySelector('#resultEmoji').innerHTML = "👏"
+    document.querySelector('#resultMessage').innerHTML = "Congratulations! You won!"
+    winnerModal.show()
+
+    end()
     playAudio('audio/wow.mp3')
   }
 }
 
 // restart 
-function end(text) {
+function end() {
   let images = shuffleImg()
   let front = document.querySelectorAll('.front')
   let card = document.querySelectorAll('.card')
@@ -169,14 +183,6 @@ function end(text) {
       card[i].setAttribute('alt', e.name)
       gameContainer.style.pointerEvents = 'all';
     }, 1000);
-
-    // change play button style
-    setTimeout(() => {
-      playBtn.disabled = false
-      playBtn.style.opacity = 1
-      playBtn.style.color = "rgb(25, 135, 84)"
-      playBtn.style.backgroundColor = "white"
-    }, 100);
 })
 
   // restart the lives
@@ -195,10 +201,6 @@ function end(text) {
       e.classList.toggle('toggle')
     })
   }, 2500);
-  
-
-  // 
-  setTimeout(() => {alert(text)}, 100);
 }
 
 // play audio
