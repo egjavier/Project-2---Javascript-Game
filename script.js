@@ -2,6 +2,10 @@ const gameContainer = document.querySelector('#gameContainer')
 const lives = document.querySelector('#lives')
 let playerLives = 6
 
+// bg music
+const audio = document.querySelector('audio')
+audio.play()
+
 // add lives count
 lives.textContent = playerLives
 
