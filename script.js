@@ -3,8 +3,11 @@ const lives = document.querySelector('#lives')
 let playerLives = 6
 
 // bg music
-const audio = document.querySelector('audio')
-audio.play()
+  window.addEventListener("click", () => {
+    const audio = document.querySelector("audio");
+    audio.volume = 0.2;
+    audio.play();
+  });
 
 // add lives count
 lives.textContent = playerLives
